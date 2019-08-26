@@ -56,14 +56,17 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
         document.getElementById(weekday).focus();
     }
 
-    setTimeout(this.loadContent, 500);
+    setTimeout(() => this.loadContent(), 500);
   }
 
   loadContent() {
     const content = JSON.parse(localStorage.getItem(this.getWeek().toDateString()));
-    for (let day1 of DAYS) {
-      console.log(this.form.controls);
-      this.form.controls[day1].setValue(content[day1]);
+    for (const day1 of DAYS) {
+      if (content == null || content[day1] == null || content[day1] === '') {
+        this.form.controls[day1].setValue('');
+      } else {
+        this.form.controls[day1].setValue(content[day1]);
+      }
     }
   }
 
