@@ -2,13 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { TestBoxComponent } from './test-box/test-box.component';
+import {FormsModule} from '@angular/forms';
+import { WeekNavComponent } from './week-nav/week-nav.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestBoxComponent,
+    WeekNavComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

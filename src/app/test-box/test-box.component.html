@@ -1,0 +1,10 @@
+<app-week-nav (newWeek)="setDate($event)"></app-week-nav>
+<form #f="ngForm" (submit)="onFormSubmit(f)" novalidate>
+  <div *ngFor="let day of days">
+    <div class="day-header">
+      {{day}}:
+    </div>
+    <textarea ngModel class="day-input" id="{{day}}" name="{{day}}"></textarea>
+  </div>
+  <button type="submit">Submit</button>
+</form>
