@@ -1,3 +1,5 @@
-<button (click)="lastWeek()">last</button>
-<button (click)="nextWeek()">next</button>
-<p>Viewing week: {{getOffsetWeek().toDateString()}}</p>
+<div id="cont">
+  <button class="nav-btn btn btn-primary" (click)="lastWeek()"><- Prev</button>
+  <p class="week">Viewing week: {{getOffsetWeek().toDateString()}}</p>
+  <button class="nav-btn btn btn-primary" (click)="nextWeek()">Next -></button>
+</div>
