@@ -2,7 +2,8 @@
 <form #f="ngForm" (submit)="onFormSubmit(f)" novalidate>
   <div *ngFor="let day of days" class="day-input">
     <label for="{{day}}" class="day-lbl">{{day}}:</label>
-    <textarea ngModel class="form-control" id="{{day}}" name="{{day}}"></textarea>
+    <textarea ngModel class="form-control" id="{{day}}" name="{{day}}" rows="3"></textarea>
   </div>
-  <button type="submit" class="btn btn-success" id="sub">Submit</button>
+  <!--<button class="btn btn-secondary">Print</button>-->
+  <button type="submit" class="btn btn-success" id="sub">Save</button>
 </form>

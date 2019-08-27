@@ -33,4 +33,8 @@ export class WeekNavComponent implements OnInit {
   ngOnInit() {
   }
 
+  isMobile() {
+    return window.innerWidth < 450;
+  }
+
 }
