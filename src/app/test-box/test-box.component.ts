@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {PrintFormService} from '../print-form.service';
+
 const DAYS: string[] = [
   'Monday',
   'Tuesday',
@@ -19,7 +21,7 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
   days = DAYS;
   @ViewChild('f', {static: false}) form;
   @Input() appWeek: string;
-  constructor() {}
+  constructor(private printFormService: PrintFormService) {}
 
   ngOnInit() {
   }
@@ -30,7 +32,9 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
     }
 
     const date: Date = new Date();
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+    const newDate: Date = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay());
+    this.appWeek = newDate.toDateString();
+    return newDate;
   }
 
   onFormSubmit(f: NgForm) {

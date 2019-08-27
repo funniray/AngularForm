@@ -3,9 +3,13 @@
   margin: 10px auto auto;
 }
 
-#sub {
-  margin: 20px auto auto;
-  text-align: center;
+.btn-btm {
+  margin: 10px;
   width: 200px;
-  display: block;
+  display: inline-block;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
 }
