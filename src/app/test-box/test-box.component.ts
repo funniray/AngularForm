@@ -24,7 +24,7 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
   questions = QUESTIONS;
   @ViewChild('f', {static: false}) form;
   @Input() appWeek: string;
-  constructor(printFormService: PrintFormService) {}
+  constructor(private printFormService: PrintFormService) {}
 
   ngOnInit() {
   }
