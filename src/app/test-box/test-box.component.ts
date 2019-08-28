@@ -2,12 +2,15 @@ import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core'
 import {NgForm} from '@angular/forms';
 import {PrintFormService} from '../print-form.service';
 
-const DAYS: string[] = [
+const QUESTIONS: string[] = [
   'Monday',
   'Tuesday',
   'Wednesday',
   'Thursday',
-  'Friday'
+  'Friday',
+  'Hours',
+  'What new knowledge or skills did you acquire while interning this week',
+  'List any pleasant or unpleasant experiences which may have occurred this week during your internship'
 ];
 
 @Component({
@@ -18,7 +21,7 @@ const DAYS: string[] = [
 
 export class TestBoxComponent implements OnInit, AfterViewInit {
 
-  days = DAYS;
+  questions = QUESTIONS;
   @ViewChild('f', {static: false}) form;
   @Input() appWeek: string;
   constructor(private printFormService: PrintFormService) {}
@@ -56,7 +59,7 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
       case 6:
         return;
       default:
-        const weekday = this.days[day - 1];
+        const weekday = this.questions[day - 1];
         document.getElementById(weekday).focus();
     }
 
@@ -65,11 +68,11 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
 
   loadContent() {
     const content = JSON.parse(localStorage.getItem(this.getWeek().toDateString()));
-    for (const day1 of DAYS) {
-      if (content == null || content[day1] == null || content[day1] === '') {
-        this.form.controls[day1].setValue('');
+    for (const question of QUESTIONS) {
+      if (content == null || content[question] == null || content[question] === '') {
+        this.form.controls[question].setValue('');
       } else {
-        this.form.controls[day1].setValue(content[day1]);
+        this.form.controls[question].setValue(content[question]);
       }
     }
   }

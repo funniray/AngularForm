@@ -1,8 +1,13 @@
 <app-week-nav (newWeek)="setDate($event)"></app-week-nav>
 <form #f="ngForm" (submit)="onFormSubmit(f)" novalidate>
-  <div *ngFor="let day of days" class="day-input">
-    <label for="{{day}}" class="day-lbl">{{day}}:</label>
-    <textarea ngModel class="form-control" id="{{day}}" name="{{day}}" rows="3"></textarea>
+  <div *ngFor="let question of questions" class="day-input">
+    <label for="{{question}}" class="day-lbl">{{question}}:</label>
+    <div *ngIf="question == 'Hours'; else elseBlock">
+      <input type="number" ngModel id="{{question}}" name="{{question}}">
+    </div>
+    <ng-template #elseBlock>
+      <textarea ngModel class="form-control" id="{{question}}" name="{{question}}"></textarea>
+    </ng-template>
   </div>
   <div id="buttons">
     <button class="btn-btm btn btn-secondary" (click)="printFormService.printForm(f,appWeek)" id="print">Print</button>
