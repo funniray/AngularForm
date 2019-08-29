@@ -45,7 +45,7 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
     return newDate;
   }
 
-  onFormSubmit(f: NgForm) {
+  async onFormSubmit(f: NgForm) {
     console.log('Submitted');
     localStorage.setItem(this.getWeek().toDateString(), JSON.stringify(f.value));
   }

@@ -3,14 +3,13 @@
   <div *ngFor="let question of questions" class="day-input">
     <label for="{{question}}" class="day-lbl">{{question}}:</label>
     <div *ngIf="question == 'Hours'; else elseBlock">
-      <input type="number" class="form-control" ngModel id="{{question}}" name="{{question}}">
+      <input type="number" class="form-control" (ngModelChange)="onFormSubmit(f)" ngModel id="{{question}}" name="{{question}}">
     </div>
     <ng-template #elseBlock>
-      <textarea ngModel class="form-control" id="{{question}}" name="{{question}}"></textarea>
+      <textarea ngModel class="form-control" (ngModelChange)="onFormSubmit(f)" id="{{question}}" name="{{question}}"></textarea>
     </ng-template>
   </div>
   <div id="buttons">
     <button class="btn-btm btn btn-secondary" (click)="printFormService.printForm(f,appWeek)" id="print">Print</button>
-    <button type="submit" class="btn-btm btn btn-success">Save</button>
   </div>
 </form>
