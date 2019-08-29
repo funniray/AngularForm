@@ -3,7 +3,7 @@
   <div *ngFor="let question of questions" class="day-input">
     <label for="{{question}}" class="day-lbl">{{question}}:</label>
     <div *ngIf="question == 'Hours'; else elseBlock">
-      <input type="number" ngModel id="{{question}}" name="{{question}}">
+      <input type="number" class="form-control" ngModel id="{{question}}" name="{{question}}">
     </div>
     <ng-template #elseBlock>
       <textarea ngModel class="form-control" id="{{question}}" name="{{question}}"></textarea>

@@ -8,6 +8,7 @@ const QUESTIONS: string[] = [
   'Wednesday',
   'Thursday',
   'Friday',
+  'Saturday-Sunday',
   'Hours',
   'What new knowledge or skills did you acquire while interning this week',
   'List any pleasant or unpleasant experiences which may have occurred this week during your internship'
@@ -24,7 +25,11 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
   questions = QUESTIONS;
   @ViewChild('f', {static: false}) form;
   @Input() appWeek: string;
-  constructor(private printFormService: PrintFormService) {}
+  printFormService: PrintFormService;
+
+  constructor(printFormService: PrintFormService) {
+    this.printFormService = printFormService;
+  }
 
   ngOnInit() {
   }
