@@ -1,18 +1,8 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {PrintFormService} from '../print-form.service';
-
-const QUESTIONS: string[] = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday-Sunday',
-  'Hours',
-  'What new knowledge or skills did you acquire while interning this week',
-  'List any pleasant or unpleasant experiences which may have occurred this week during your internship'
-];
+import {InputType} from './input-type.enum';
+import {QUESTIONS} from './form-inputs';
 
 @Component({
   selector: 'app-test-box',
@@ -26,6 +16,7 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
   @ViewChild('f', {static: false}) form;
   @Input() appWeek: string;
   printFormService: PrintFormService;
+  inputType = InputType;
 
   constructor(printFormService: PrintFormService) {
     this.printFormService = printFormService;
@@ -65,7 +56,7 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
         return;
       default:
         const weekday = this.questions[day - 1];
-        document.getElementById(weekday).focus();
+        document.getElementById(weekday.id).focus();
     }
 
     setTimeout(() => this.loadContent(), 500);
@@ -74,10 +65,10 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
   loadContent() {
     const content = JSON.parse(localStorage.getItem(this.getWeek().toDateString()));
     for (const question of QUESTIONS) {
-      if (content == null || content[question] == null || content[question] === '') {
-        this.form.controls[question].setValue('');
+      if (content == null || (content[question.id] || content[question.name]) == null) {
+        this.form.controls[question.id].setValue('');
       } else {
-        this.form.controls[question].setValue(content[question]);
+        this.form.controls[question.id].setValue(content[question.id] || content[question.name]);
       }
     }
   }
