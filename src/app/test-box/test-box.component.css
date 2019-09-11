@@ -1,6 +1,25 @@
 .day-input {
   width: 75vw;
   margin: 10px auto auto;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.hours {
+  width: 60%;
+}
+
+.form-control {
+  margin-top: 10px;
+}
+
+.day-lbl {
+  width: 40%;
 }
 
 .btn-btm {
@@ -16,5 +35,6 @@
 
 #Hours {
   display: inline-block;
-  width: 10%;
+  width: 60%;
+  margin-left: 20px;
 }

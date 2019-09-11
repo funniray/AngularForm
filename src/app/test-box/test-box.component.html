@@ -1,15 +1,23 @@
 <app-week-nav (newWeek)="setDate($event)"></app-week-nav>
-<form #f="ngForm" (submit)="onFormSubmit(f)" novalidate>
+<form #f="ngForm" (submit)="formChange(f)" novalidate>
   <div *ngFor="let question of questions" class="day-input">
-    <label for="{{question.id}}" class="day-lbl">{{question.name}}</label>
-    <div *ngIf="question.type == inputType.NUMBER; else elseBlock">
-      <input type="number" class="form-control" (ngModelChange)="onFormSubmit(f)" ngModel id="{{question.id}}" name="{{question.id}}">
+    <div class="inline-block">
+      <div *ngIf="question.type == inputType.DAY; else lblElse" class="inline-block day-time">
+        <label for="{{question.id}}" class="day-lbl inline-block">{{getOffsetDay(question.dayOffset)+':'}}</label>
+        <input type="number" class="form-control inline-block hours" (ngModelChange)="formChange(f)" ngModel id="{{question.id}}-time" name="{{question.id}}-time" placeholder="Hours Worked">
+      </div>
+      <ng-template #lblElse>
+        <label for="{{question.id}}" class="inline-block">{{question.name}}</label>
+      </ng-template>
+    </div>
+    <div *ngIf="question.type == inputType.NUMBER; else elseBlock" class="inline-block">
+      <input type="number" class="form-control" (ngModelChange)="formChange(f)" ngModel id="{{question.id}}" name="{{question.id}}" disabled>
     </div>
     <ng-template #elseBlock>
-      <textarea ngModel class="form-control" (ngModelChange)="onFormSubmit(f)" id="{{question.id}}" name="{{question.id}}"></textarea>
+      <textarea ngModel class="form-control" (ngModelChange)="formChange(f)" id="{{question.id}}" name="{{question.id}}"></textarea>
     </ng-template>
   </div>
   <div id="buttons">
-    <button class="btn-btm btn btn-secondary" (click)="printFormService.printForm(f,appWeek)" id="print">Print</button>
+    <button class="btn-btm btn btn-secondary" (click)="printFormService.printForm(f,appWeek.toDateString())" id="print">Print</button>
   </div>
 </form>

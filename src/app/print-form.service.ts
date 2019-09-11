@@ -21,10 +21,17 @@ export class PrintFormService {
       ' conducted during this week. Hours at the internship should be rounded to the nearest 1/4th hour');
     for (const question of QUESTIONS) {
       const control = f.controls[question.id];
+      const hours = f.controls[question.id + '-time'];
       if (question.type === InputType.NUMBER) {
         pdf.add({text: [{text: `\n${question.name} `, bold: true}, {text: control.value}]});
+      } else if (question.type === InputType.DAY && (control.value === '' || control.value === undefined)) {
+        continue;
       } else {
-        pdf.add({text: `\n${question.name}`, bold: true});
+        if (question.type === InputType.DAY && hours !== undefined) {
+          pdf.add({text: [{text: `\n${question.name}`, bold: true}, {text: ` Worked ${hours.value} hours`}]});
+        } else {
+          pdf.add({text: `\n${question.name}`, bold: true});
+        }
         pdf.add({text: control.value});
       }
     }

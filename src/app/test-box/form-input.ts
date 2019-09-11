@@ -4,4 +4,5 @@ export class FormInput {
   name: string;
   id: string;
   type: InputType;
+  dayOffset?: number;
 }
