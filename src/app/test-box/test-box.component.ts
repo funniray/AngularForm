@@ -95,7 +95,7 @@ export class TestBoxComponent implements OnInit, AfterViewInit {
 
   getOffsetDay(offset: number) {
     const week = this.getWeek();
-    return new Date(0, week.getMonth(), week.getDate() + offset).toDateString().replace(' 1900', '');
+    return new Date(week.getFullYear(), week.getMonth(), week.getDate() + offset).toDateString().replace(` ${week.getFullYear()}`, '');
   }
 
 }
